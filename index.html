@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUP LAB — Laboratorio creativo especializado en Inteligencia Artificial aplicada a contenido audiovisual, imagen, video y entornos 3D." />
+  <meta property="og:title" content="LUP LAB — Laboratorio Creativo IA" />
+  <meta property="og:description" content="Serios en el proceso, creativos en el resultado." />
+  <title>LUP LAB — Laboratorio Creativo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23171918' rx='8'/><text x='4' y='24' font-size='22' fill='%23C4E802'>ꭐ</text></svg>" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     LOADER
+════════════════════════════════════════════ -->
+<div id="loader" role="status" aria-label="Cargando">
+  <div class="loader-logo">LUP LAB</div>
+  <div class="loader-bar">
+    <div class="loader-bar-fill"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MOBILE MENU
+════════════════════════════════════════════ -->
+<div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+  <button class="mobile-menu-close" aria-label="Cerrar menú">✕</button>
+  <a href="#sobre">Nosotros</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#clientes">Clientes</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NAVEGACIÓN
+════════════════════════════════════════════ -->
+<nav class="main-nav" aria-label="Navegación principal">
+  <a href="#hero" class="nav-logo" aria-label="LUP LAB inicio">
+    <span class="u-icon" aria-hidden="true">ꭐ</span>
+    LUP<span style="color:var(--lima)">LAB</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section id="hero" aria-label="Inicio">
+  <div class="hero-video-wrapper">
+    <!--
+    <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="tu-video.mp4" type="video/mp4" />
+    </video>
+    -->
+    <div class="hero-video-placeholder" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-loop-bg" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="160" stroke="#C4E802" stroke-width="2"/>
+      <circle cx="200" cy="200" r="120" stroke="#C4E802" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="80" stroke="#C4E802" stroke-width="1"/>
+      <circle cx="200" cy="200" r="40" stroke="#C4E802" stroke-width="0.8"/>
+      <path d="M200 40 C280 40 360 120 360 200 C360 280 280 360 200 360 C120 360 40 280 40 200 C40 120 120 40 200 40Z" stroke="#C4E802" stroke-width="1.5" stroke-dasharray="8 4"/>
+    </svg>
+    <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M150 30 C210 30 270 90 270 150 C270 210 210 270 150 270 C90 270 30 210 30 150 C30 90 90 30 150 30Z" stroke="#C4E802" stroke-width="2" stroke-dasharray="12 6"/>
+      <path d="M150 70 C190 70 230 110 230 150 C230 190 190 230 150 230 C110 230 70 190 70 150 C70 110 110 70 150 70Z" stroke="#C4E802" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-label">
+      <span class="hero-label-dot" aria-hidden="true"></span>
+      Laboratorio Creativo · IA Audiovisual
+    </div>
+
+    <div class="hero-logo-text" aria-label="LUP LAB">
+      <span class="lup">L<span class="u-highlight" aria-hidden="true">U</span>P</span>
+      <span class="lab">lab.</span>
+    </div>
+
+    <p class="hero-tagline">Proceso creativo en movimiento.</p>
+
+    <div class="hero-cta-group">
+      <a href="#servicios" class="btn-primary">
+        <span>Explorá el Laboratorio</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      <a href="#contacto" class="btn-secondary">
+        Contactanos
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- Loop divider 1 -->
+<div class="loop-divider" aria-hidden="true">
+  <div class="loop-divider-inner">
+    LUP · LOOP · CREATIVO · IA · AUDIOVISUAL · MOTION · 3D · LUP · LOOP · CREATIVO · IA · AUDIOVISUAL · MOTION · 3D ·&nbsp;
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SOBRE NOSOTROS
+════════════════════════════════════════════ -->
+<section id="sobre" aria-labelledby="sobre-title">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-copy">
+        <div class="section-label reveal">Team LUP</div>
+        <h2 class="section-title reveal reveal-delay-1" id="sobre-title">
+          Serios en el proceso,<br>
+          <em>creativos en el resultado.</em>
+        </h2>
+        <p class="reveal reveal-delay-2">
+          Somos un equipo de profesionales <strong>formados y diplomados en Inteligencia Artificial aplicada a la creación audiovisual</strong> (UNCuyo). Con años de experiencia en marketing, comunicación digital, diseño y fotografía.
+        </p>
+        <p class="reveal reveal-delay-3">
+          Integramos estos conocimientos con nuevas tecnologías para desarrollar soluciones visuales innovadoras. LUP nace de la intersección entre la <strong>creatividad, la dirección visual y la inteligencia artificial.</strong>
+        </p>
+        <div class="sobre-highlight reveal reveal-delay-4">
+          <div class="sobre-highlight-icon" aria-hidden="true">⚡</div>
+          <p>
+            <strong>Nuestra filosofía</strong>
+            No usamos IA como atajo, sino como herramienta creativa para desarrollar piezas con identidad, concepto y valor estético.
+          </p>
+        </div>
+      </div>
+
+      <div class="sobre-visual reveal reveal-delay-2">
+        <div class="sobre-card">
+          <div class="sobre-card-loop" aria-hidden="true">
+            <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
+              <circle cx="90" cy="90" r="70" stroke="#C4E802" stroke-width="1.5" stroke-dasharray="6 3"/>
+              <circle cx="90" cy="90" r="50" stroke="#C4E802" stroke-width="1"/>
+              <circle cx="90" cy="90" r="30" stroke="#C4E802" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <h3 class="sobre-card-title">¿Por qué LUP?</h3>
+          <p class="sobre-card-sub">
+            "Lup" es la forma fonética de <em style="color:var(--lima); font-style:normal;">loop</em>. Representa repetición creativa, iteración constante, procesos no lineales y experimentación infinita.
+          </p>
+
+          <div class="stats-grid" style="margin-top: 32px;">
+            <div class="stat-item">
+              <div class="stat-number" data-count="100" data-suffix="%">0%</div>
+              <div class="stat-label">Piezas únicas</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="5" data-suffix="+">0+</div>
+              <div class="stat-label">Servicios IA</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="360" data-suffix="°">0°</div>
+              <div class="stat-label">Visión creativa</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="24" data-suffix="/7">0/7</div>
+              <div class="stat-label">Proceso en loop</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     SERVICIOS
+════════════════════════════════════════════ -->
+<section id="servicios" aria-labelledby="servicios-title">
+  <div class="container">
+    <div class="servicios-header">
+      <div class="section-label reveal">¿Qué hacemos en IA?</div>
+      <h2 class="section-title reveal reveal-delay-1" id="servicios-title">
+        Cada pieza, <em>diseñada para tu marca.</em>
+      </h2>
+      <p class="reveal reveal-delay-2">
+        No replicamos plantillas. Cada proyecto comienza desde cero con un proceso conceptual propio.
+      </p>
+    </div>
+
+    <div class="servicios-grid" role="list">
+
+      <div class="servicio-card reveal" role="listitem">
+        <span class="servicio-number">01</span>
+        <span class="servicio-icon" aria-hidden="true">◈</span>
+        <h3 class="servicio-title">Dirección Creativa</h3>
+        <p class="servicio-desc">
+          Desarrollamos el concepto visual y narrativo de cada proyecto. Definimos estética, tono, referencias y lenguaje visual antes de producir. La IA se integra al proceso, no lo reemplaza.
+        </p>
+        <div class="servicio-tags">
+          <span>Moodboard</span>
+          <span>Narrativa</span>
+          <span>Curaduría</span>
+        </div>
+        <div class="servicio-arrow" aria-hidden="true">→</div>
+      </div>
+
+      <div class="servicio-card featured reveal reveal-delay-1" role="listitem">
+        <span class="servicio-number">02</span>
+        <span class="servicio-icon" aria-hidden="true">▶</span>
+        <h3 class="servicio-title">Producción Audiovisual con IA</h3>
+        <p class="servicio-desc">
+          Creamos imágenes y videos con herramientas de IA generativa. Visuales conceptuales, videos cortos y piezas animadas. Contenido experimental y publicitario.
+        </p>
+        <div class="servicio-tags">
+          <span>Imagen IA</span>
+          <span>Video IA</span>
+          <span>Experimental</span>
+        </div>
+        <div class="servicio-arrow" aria-hidden="true">→</div>
+      </div>
+
+      <div class="servicio-card reveal reveal-delay-2" role="listitem">
+        <span class="servicio-number">03</span>
+        <span class="servicio-icon" aria-hidden="true">⟳</span>
+        <h3 class="servicio-title">Motion Graphics y Animación</h3>
+        <p class="servicio-desc">
+          Diseñamos y animamos gráficos en movimiento. Motion aplicado a branding y mockups. Loops, intros, transiciones y videos para redes.
+        </p>
+        <div class="servicio-tags">
+          <span>Loops</span>
+          <span>Branding</span>
+          <span>Redes</span>
+        </div>
+        <div class="servicio-arrow" aria-hidden="true">→</div>
+      </div>
+
+      <div class="servicio-card reveal reveal-delay-1" role="listitem">
+        <span class="servicio-number">04</span>
+        <span class="servicio-icon" aria-hidden="true">◻</span>
+        <h3 class="servicio-title">Renders 3D y Visualización</h3>
+        <p class="servicio-desc">
+          Flujos híbridos de IA + herramientas 3D. Renders de producto, visualización arquitectónica, escenarios y espacios virtuales animados.
+        </p>
+        <div class="servicio-tags">
+          <span>Producto</span>
+          <span>Arquitec.</span>
+          <span>3D IA</span>
+        </div>
+        <div class="servicio-arrow" aria-hidden="true">→</div>
+      </div>
+
+      <div class="servicio-card reveal reveal-delay-2" role="listitem">
+        <span class="servicio-number">05</span>
+        <span class="servicio-icon" aria-hidden="true">◎</span>
+        <h3 class="servicio-title">Voces con IA</h3>
+        <p class="servicio-desc">
+          Creación o clonación de voces. Diferentes tonos y estilos. Ideal para publicidad, videos y contenido digital. Narración, voice over y audio branding.
+        </p>
+        <div class="servicio-tags">
+          <span>Voice Over</span>
+          <span>Audio Brand</span>
+          <span>Clonación</span>
+        </div>
+        <div class="servicio-arrow" aria-hidden="true">→</div>
+      </div>
+
+      <div class="servicio-card reveal reveal-delay-3" role="listitem">
+        <span class="servicio-number">06</span>
+        <span class="servicio-icon" aria-hidden="true">◈</span>
+        <h3 class="servicio-title">Contenido para Marcas</h3>
+        <p class="servicio-desc">
+          Contenido creativo para redes sociales, lanzamientos y campañas digitales. Branding y mockups con IA. Nos destacamos con herramientas innovadoras.
+        </p>
+        <div class="servicio-tags">
+          <span>Redes</span>
+          <span>Campañas</span>
+          <span>Branding</span>
+        </div>
+        <div class="servicio-arrow" aria-hidden="true">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROCESO
+════════════════════════════════════════════ -->
+<section id="proceso" aria-labelledby="proceso-title">
+  <div class="container">
+    <div style="text-align:center; max-width: 600px; margin: 0 auto 0;">
+      <div class="section-label reveal">Metodología</div>
+      <h2 class="section-title reveal reveal-delay-1" id="proceso-title">
+        El <em>loop</em> del proceso
+      </h2>
+      <p class="reveal reveal-delay-2" style="color:var(--gris-texto); font-size: 1rem;">
+        Cada proyecto comienza con una etapa conceptual. Priorizamos calidad sobre volumen.
+      </p>
+    </div>
+
+    <div class="proceso-steps">
+      <div class="paso reveal">
+        <div class="paso-numero">01</div>
+        <h3 class="paso-title">Conceptualizar</h3>
+        <p class="paso-desc">Definimos narrativa, estética y objetivos. Moodboard, referencias y dirección visual.</p>
+      </div>
+      <div class="paso reveal reveal-delay-1">
+        <div class="paso-numero">02</div>
+        <h3 class="paso-title">Explorar</h3>
+        <p class="paso-desc">Experimentamos con herramientas de IA y técnicas creativas para encontrar el lenguaje visual único.</p>
+      </div>
+      <div class="paso reveal reveal-delay-2">
+        <div class="paso-numero">03</div>
+        <h3 class="paso-title">Producir</h3>
+        <p class="paso-desc">Generamos las piezas finales con atención al detalle. Imagen, video, audio o 3D según el proyecto.</p>
+      </div>
+      <div class="paso reveal reveal-delay-3">
+        <div class="paso-numero">04</div>
+        <h3 class="paso-title">Refinar</h3>
+        <p class="paso-desc">Iteramos y perfeccionamos hasta lograr piezas con identidad, concepto y valor estético real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Loop divider 2 -->
+<div class="loop-divider" aria-hidden="true">
+  <div class="loop-divider-inner">
+    SERIOS EN EL PROCESO · CREATIVOS EN EL RESULTADO · SERIOS EN EL PROCESO · CREATIVOS EN EL RESULTADO ·&nbsp;
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CLIENTES
+════════════════════════════════════════════ -->
+<section id="clientes" aria-labelledby="clientes-title">
+  <div class="container">
+    <div class="clientes-header">
+      <div class="section-label reveal">Clientes y Colaboraciones</div>
+      <h2 class="section-title reveal reveal-delay-1" id="clientes-title">
+        Marcas que ya están <em>en el loop.</em>
+      </h2>
+      <p class="clientes-subtitle reveal reveal-delay-2">Confían en LUP para su contenido audiovisual con IA</p>
+    </div>
+  </div>
+
+  <div class="clientes-ticker-wrapper">
+    <div class="clientes-ticker" role="list" aria-label="Clientes de LUP LAB">
+
+      <div class="cliente-item" role="listitem">
+        <div class="cliente-logo-placeholder" aria-label="Alpardata">AD</div>
+        <span class="cliente-name">Alpardata</span>
+      </div>
+
+      <div class="cliente-item" role="listitem">
+        <div class="cliente-logo-placeholder" aria-label="Vinos Brotar">VB</div>
+        <span class="cliente-name">Vinos Brotar</span>
+      </div>
+
+      <div class="cliente-item" role="listitem">
+        <div class="cliente-logo-placeholder" aria-label="Bohéme">BH</div>
+        <span class="cliente-name">Bohéme</span>
+      </div>
+
+      <div class="cliente-item" role="listitem">
+        <div class="cliente-logo-placeholder" aria-label="Desisnacks">DS</div>
+        <span class="cliente-name">Desisnacks</span>
+      </div>
+
+      <div class="cliente-item" role="listitem">
+        <div class="cliente-logo-placeholder" aria-label="Happy Farm">HF</div>
+        <span class="cliente-name">Happy Farm</span>
+      </div>
+
+      <div class="cliente-item" role="listitem">
+        <div class="cliente-logo-placeholder" aria-label="Boost">BO</div>
+        <span class="cliente-name">Boost</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     CONTACTO
+════════════════════════════════════════════ -->
+<section id="contacto" aria-labelledby="contacto-title">
+  <div class="container">
+    <div class="contacto-inner">
+      <div class="section-label reveal" style="justify-content:center;">Trabajemos juntos</div>
+      <h2 class="section-title reveal reveal-delay-1" id="contacto-title">
+        Es hora de que tu marca<br><em>nos conozca.</em>
+      </h2>
+      <p class="reveal reveal-delay-2">
+        Contanos sobre tu proyecto y armamos una propuesta personalizada.<br>
+        Cada desarrollo es único, como tu marca.
+      </p>
+
+      <div class="contacto-methods reveal reveal-delay-2">
+        <a href="https://wa.me/5491155555555?text=Hola%20LUP%20LAB%2C%20quiero%20consultar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer" class="btn-primary contact-button whatsapp-button">
+          <span>WhatsApp</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="https://instagram.com/lup.lab" target="_blank" rel="noopener noreferrer" class="btn-secondary contact-button instagram-button">
+          <span>Instagram</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <p class="contacto-note reveal reveal-delay-3">
+        Podés escribirnos en WhatsApp o enviarnos un mensaje directo en Instagram. Responderemos rápido con la propuesta adecuada.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     INSTAGRAM STRIP
+════════════════════════════════════ -->
+<div class="instagram-strip">
+  <a href="https://instagram.com/lup.lab" target="_blank" rel="noopener noreferrer" aria-label="Seguinos en Instagram @lup.lab">
+    <div class="ig-icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+      </svg>
+    </div>
+    Seguinos en Instagram &nbsp; @lup.lab
+  </a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#hero" class="footer-logo" aria-label="LUP LAB inicio">
+        L<span>U</span>P LAB
+      </a>
+      <p class="footer-copy">
+        © 2025 LUP LAB — Laboratorio Creativo.<br>
+        Proceso creativo en movimiento. <em>Siempre en loop.</em>
+      </p>
+      <nav class="footer-links" aria-label="Links del footer">
+        <a href="#sobre">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="https://instagram.com/lup.lab" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5491155555555?text=Hola%20LUP%20LAB%2C%20quiero%20consultar%20sobre%20un%20proyecto." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+  <span aria-hidden="true">💬</span>
+  <span>WhatsApp</span>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
