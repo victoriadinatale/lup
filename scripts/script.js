@@ -176,13 +176,20 @@ function initParallax() {
 function initServicioCards() {
   const cards = document.querySelectorAll('.servicio-card');
   cards.forEach(card => {
+    const video = card.querySelector('.servicio-card-video');
+
     card.addEventListener('mouseenter', function() {
       cards.forEach(c => {
         if (c !== this) c.style.opacity = '0.55';
       });
+      if (video) video.play().catch(() => {});
     });
     card.addEventListener('mouseleave', function() {
       cards.forEach(c => c.style.opacity = '1');
+      if (video && !video.classList.contains('video--active')) {
+        video.pause();
+        video.currentTime = 0;
+      }
     });
   });
 }
