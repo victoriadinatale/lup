@@ -868,26 +868,17 @@ section {
   color: var(--lima);
 }
 
-.cliente-logo-placeholder {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: rgba(196, 232, 2, 0.06);
-  border: 1px solid rgba(196, 232, 2, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--lima);
-  letter-spacing: 0.05em;
+.cliente-logo {
+  width: 180px;
+  height: 90px;
+  object-fit: contain;
+  opacity: 0.85;
   transition: var(--transition);
 }
 
-.cliente-item:hover .cliente-logo-placeholder {
-  background: rgba(196, 232, 2, 0.12);
-  transform: scale(1.1);
+.cliente-item:hover .cliente-logo {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(85%) sepia(80%) saturate(500%) hue-rotate(30deg);
 }
 
 .cliente-name {
