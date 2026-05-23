@@ -1029,6 +1029,14 @@ section {
   padding: 20px 0;
 }
 
+.loop-divider--primary .loop-divider-inner {
+  animation-duration: 26s;
+}
+
+.loop-divider--secondary .loop-divider-inner {
+  animation-duration: 15s;
+}
+
 @keyframes ticker-text {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -1374,9 +1382,10 @@ footer {
 .footer-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+  gap: 8px;
 }
 
 .footer-logo {
@@ -1391,18 +1400,15 @@ footer {
   height: 52px;
   object-fit: contain;
   display: block;
+  transform: translateY(-3px);
 }
 
 .footer-copy {
   font-size: 0.82rem;
   color: var(--gris-texto);
   letter-spacing: 0.05em;
-  line-height: 1.7;
-}
-
-.footer-copy em {
-  color: var(--lima);
-  font-style: normal;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .footer-links {
@@ -1522,7 +1528,7 @@ footer {
   .proceso-steps { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .form-group.full { grid-column: span 1; }
-  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-inner { flex-direction: row; text-align: center; }
   .footer-links { justify-content: center; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .hero-cta-group { flex-direction: column; align-items: center; }
