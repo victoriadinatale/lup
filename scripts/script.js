@@ -10,12 +10,28 @@ function initLoader() {
   const loader = document.getElementById('loader');
   if (!loader) return;
 
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      loader.classList.add('hidden');
-      document.body.style.overflow = '';
-    }, 2000);
-  });
+  const hideDelay = window.matchMedia('(max-width: 768px)').matches ? 900 : 1200;
+  let isHidden = false;
+
+  const hideLoader = () => {
+    if (isHidden) return;
+    isHidden = true;
+    loader.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+
+  const scheduleHide = () => {
+    setTimeout(hideLoader, hideDelay);
+  };
+
+  // Safety net: avoids a stuck loader if some assets fail to load.
+  setTimeout(hideLoader, 3500);
+
+  if (document.readyState === 'complete') {
+    scheduleHide();
+  } else {
+    window.addEventListener('load', scheduleHide, { once: true });
+  }
 
   document.body.style.overflow = 'hidden';
 }
