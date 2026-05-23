@@ -857,9 +857,9 @@ section {
   justify-content: center;
   flex-direction: column;
   gap: 10px;
-  padding: 24px 56px;
+  padding: 28px 64px;
   border-right: 1px solid rgba(196, 232, 2, 0.08);
-  min-width: 220px;
+  min-width: 260px;
   transition: var(--transition);
   cursor: default;
 }
@@ -869,16 +869,16 @@ section {
 }
 
 .cliente-logo {
-  width: 180px;
-  height: 90px;
+  width: 200px;
+  height: 100px;
   object-fit: contain;
-  opacity: 0.85;
+  opacity: 0.9;
   transition: var(--transition);
 }
 
 .cliente-item:hover .cliente-logo {
   opacity: 1;
-  filter: brightness(0) saturate(100%) invert(85%) sepia(80%) saturate(500%) hue-rotate(30deg);
+  transform: scale(1.5);
 }
 
 .cliente-name {
