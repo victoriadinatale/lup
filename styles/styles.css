@@ -100,6 +100,14 @@ body::before {
   animation: pulse-glow 1.5s ease-in-out infinite;
 }
 
+.loader-logo-img {
+  width: 220px;
+  height: auto;
+  object-fit: contain;
+  animation: pulse-glow 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(196, 232, 2, 0.4));
+}
+
 .loader-bar {
   width: 200px;
   height: 2px;
