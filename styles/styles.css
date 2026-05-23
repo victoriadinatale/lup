@@ -857,9 +857,9 @@ section {
   justify-content: center;
   flex-direction: column;
   gap: 10px;
-  padding: 28px 64px;
+  padding: 40px 80px;
   border-right: 1px solid rgba(196, 232, 2, 0.08);
-  min-width: 260px;
+  min-width: 320px;
   transition: var(--transition);
   cursor: default;
 }
@@ -869,8 +869,8 @@ section {
 }
 
 .cliente-logo {
-  width: 200px;
-  height: 100px;
+  width: 260px;
+  height: 130px;
   object-fit: contain;
   opacity: 0.9;
   transition: var(--transition);
@@ -878,7 +878,7 @@ section {
 
 .cliente-item:hover .cliente-logo {
   opacity: 1;
-  transform: scale(1.5);
+  transform: scale(1.15);
 }
 
 .cliente-name {
@@ -888,6 +888,10 @@ section {
   text-transform: uppercase;
   color: var(--gris-texto);
   transition: var(--transition);
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.4;
+  white-space: normal;
 }
 
 /* ─── LOOP DECORATIVO ─── */
@@ -1402,4 +1406,10 @@ footer {
 @media (max-width: 480px) {
   .hero-logo-image { width: min(420px, 88vw); margin-bottom: 32px; }
   .stats-grid { grid-template-columns: 1fr; }
+}
+
+.logo-desis {
+  width: 320px;
+  height: 160px;
+  object-fit: contain;
 }
