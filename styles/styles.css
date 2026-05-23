@@ -1109,9 +1109,12 @@ section {
   z-index: 10001;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 18px;
-  border-radius: 999px;
+  justify-content: center;
+  gap: 0;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border-radius: 50%;
   background: #25D366;
   color: #0A160D;
   font-weight: 700;
@@ -1126,8 +1129,11 @@ section {
 }
 
 .whatsapp-float span:first-child {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  line-height: 1;
 }
+
+.whatsapp-float span:last-child { display: none; }
 
 @media (max-width: 768px) {
   .contacto-methods { flex-direction: column; }
@@ -1136,15 +1142,7 @@ section {
   .whatsapp-float {
     right: 16px;
     bottom: 16px;
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    border-radius: 50%;
-    justify-content: center;
-    gap: 0;
   }
-  .whatsapp-float span:last-child { display: none; }
-  .whatsapp-float span:first-child { font-size: 1.4rem; line-height: 1; }
 }
 
 .form-grid {
@@ -1429,7 +1427,7 @@ footer {
   .main-nav.scrolled { padding: 14px 24px; }
   .nav-logo { font-size: 1.2rem; gap: 6px; }
   .nav-logo-image { width: 40px; height: 40px; }
-  .nav-logo-text { font-size: 1.05em; }
+  .nav-logo-text { font-size: 0.6em; }
   .footer-logo-image { width: 46px; height: 46px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
