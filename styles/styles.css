@@ -1032,6 +1032,39 @@ section {
   transform: scale(1);
 }
 
+/* ─── LUP KIDS ─── */
+#lup-kids {
+  background: var(--negro);
+  padding: 96px 0 0;
+}
+
+.lup-kids-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 34px;
+}
+
+.lup-kids-desc {
+  font-size: 1rem;
+  color: var(--gris-texto);
+}
+
+.lup-kids-video-wrap {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  border-top: 1px solid rgba(196, 232, 2, 0.14);
+  border-bottom: 1px solid rgba(196, 232, 2, 0.14);
+  background: #0f1110;
+}
+
+.lup-kids-video {
+  width: 100%;
+  height: min(70vh, 760px);
+  display: block;
+  object-fit: cover;
+}
+
 /* ─── CLIENTES ─── */
 #clientes {
   background: var(--negro);
