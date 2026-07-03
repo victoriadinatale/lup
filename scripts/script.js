@@ -194,6 +194,39 @@ function initServicioCards() {
   });
 }
 
+// ─── TEAM PHOTO SWAP ON HOVER ───────────────
+function initTeamPhotoSwap() {
+  const cards = document.querySelectorAll('.team-member');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    const photo = card.querySelector('.team-photo');
+    if (!photo) return;
+
+    const defaultSrc = photo.dataset.defaultSrc;
+    const hoverSrc = photo.dataset.hoverSrc;
+    if (!defaultSrc || !hoverSrc) return;
+
+    const showDefault = () => {
+      if (photo.getAttribute('src') !== defaultSrc) {
+        photo.setAttribute('src', defaultSrc);
+      }
+    };
+
+    const showHover = () => {
+      if (photo.getAttribute('src') !== hoverSrc) {
+        photo.setAttribute('src', hoverSrc);
+      }
+    };
+
+    showDefault();
+    card.addEventListener('mouseenter', showHover);
+    card.addEventListener('mouseleave', showDefault);
+    card.addEventListener('focusin', showHover);
+    card.addEventListener('focusout', showDefault);
+  });
+}
+
 // ─── CLIENTES TICKER DUPLICATE ───────────────
 function initTicker() {
   const ticker = document.querySelector('.clientes-ticker');
@@ -260,6 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initParallax();
   initServicioCards();
+  initTeamPhotoSwap();
   initTicker();
   initLoopDivider();
   initActiveNav();

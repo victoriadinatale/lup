@@ -750,18 +750,54 @@ section {
   display: block;
 }
 
-.team-name {
-  font-family: var(--font-display);
-  color: var(--blanco);
-  font-size: 1rem;
-  margin-bottom: 8px;
+.team-photo--dani,
+.team-photo--lole,
+.team-photo--agos {
+  object-position: center 48%;
 }
 
-.team-role {
-  font-size: 0.88rem;
+.team-name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--blanco);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.team-field {
+  text-align: left;
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+.team-field:last-child {
+  margin-bottom: 0;
+}
+
+.team-field-label {
+  display: none;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lima);
+  margin-right: 6px;
+}
+
+.team-description {
+  display: block;
+  font-size: 0.75rem;
   color: var(--gris-texto);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.team-task {
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--lima);
 }
 
 @keyframes team-slide {
