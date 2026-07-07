@@ -284,6 +284,156 @@ function initHeroLoops() {
   }, { passive: true });
 }
 
+// ─── MOBILE WHATSAPP FLOAT VISIBILITY ───────
+function initMobileWhatsappFloat() {
+  const floatButton = document.querySelector('.whatsapp-float');
+  const startSection = document.querySelector('#sobre');
+  const contactSection = document.querySelector('#contacto');
+  if (!floatButton || !startSection || !contactSection) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
+
+  const updateVisibility = () => {
+    if (!mobileQuery.matches) {
+      floatButton.classList.remove('is-visible');
+      return;
+    }
+
+    const showTriggerY = window.scrollY + window.innerHeight * 0.55;
+    const hideTriggerY = window.scrollY + window.innerHeight * 0.65;
+    const visibleFromSecondBlock = showTriggerY >= startSection.offsetTop;
+    const hideAtContactBlock = hideTriggerY >= contactSection.offsetTop;
+
+    floatButton.classList.toggle('is-visible', visibleFromSecondBlock && !hideAtContactBlock);
+  };
+
+  updateVisibility();
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+  window.addEventListener('resize', updateVisibility);
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', updateVisibility);
+  } else if (typeof mobileQuery.addListener === 'function') {
+    mobileQuery.addListener(updateVisibility);
+  }
+}
+
+// ─── MOBILE SERVICIOS CAROUSEL ──────────────
+function initServiciosMobileCarousel() {
+  const grid = document.querySelector('.servicios-grid');
+  const dotsWrap = document.querySelector('.servicios-dots');
+  if (!grid || !dotsWrap) return;
+
+  const cards = Array.from(grid.querySelectorAll('.servicio-card'));
+  if (cards.length < 2) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
+  const dots = [];
+  let activeIndex = 0;
+  let autoPlayTimer = null;
+  let resumeTimer = null;
+
+  dotsWrap.innerHTML = '';
+  cards.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'servicios-dot';
+    dot.setAttribute('aria-label', `Ir al servicio ${index + 1}`);
+    dot.addEventListener('click', () => {
+      scrollToIndex(index);
+      pauseAndResumeAutoPlay();
+    });
+    dotsWrap.appendChild(dot);
+    dots.push(dot);
+  });
+
+  const getStep = () => {
+    if (cards.length < 2) return cards[0].getBoundingClientRect().width;
+    const firstRect = cards[0].getBoundingClientRect();
+    const secondRect = cards[1].getBoundingClientRect();
+    return Math.max(1, secondRect.left - firstRect.left);
+  };
+
+  const updateDots = (index) => {
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle('is-active', dotIndex === index);
+    });
+  };
+
+  const getIndexFromScroll = () => {
+    const step = getStep();
+    const rawIndex = Math.round(grid.scrollLeft / step);
+    return Math.min(cards.length - 1, Math.max(0, rawIndex));
+  };
+
+  const scrollToIndex = (index, behavior = 'smooth') => {
+    const safeIndex = Math.min(cards.length - 1, Math.max(0, index));
+    const step = getStep();
+    grid.scrollTo({ left: safeIndex * step, behavior });
+    activeIndex = safeIndex;
+    updateDots(activeIndex);
+  };
+
+  const stopAutoPlay = () => {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  };
+
+  const startAutoPlay = () => {
+    stopAutoPlay();
+    if (!mobileQuery.matches) return;
+
+    autoPlayTimer = setInterval(() => {
+      if (document.hidden) return;
+
+      const nextIndex = activeIndex + 1;
+      if (nextIndex >= cards.length) {
+        scrollToIndex(0);
+        return;
+      }
+      scrollToIndex(nextIndex);
+    }, 3600);
+  };
+
+  const pauseAndResumeAutoPlay = () => {
+    stopAutoPlay();
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoPlay, 4200);
+  };
+
+  const handleScroll = () => {
+    if (!mobileQuery.matches) return;
+    activeIndex = getIndexFromScroll();
+    updateDots(activeIndex);
+  };
+
+  const syncMode = () => {
+    if (!mobileQuery.matches) {
+      stopAutoPlay();
+      return;
+    }
+    activeIndex = getIndexFromScroll();
+    updateDots(activeIndex);
+    startAutoPlay();
+  };
+
+  grid.addEventListener('scroll', handleScroll, { passive: true });
+  grid.addEventListener('touchstart', pauseAndResumeAutoPlay, { passive: true });
+  grid.addEventListener('pointerdown', pauseAndResumeAutoPlay);
+  grid.addEventListener('mouseenter', pauseAndResumeAutoPlay);
+  window.addEventListener('resize', syncMode);
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', syncMode);
+  } else if (typeof mobileQuery.addListener === 'function') {
+    mobileQuery.addListener(syncMode);
+  }
+
+  syncMode();
+}
+
 // ─── INIT ALL ─────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initLoader();
@@ -298,4 +448,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoopDivider();
   initActiveNav();
   initHeroLoops();
+  initMobileWhatsappFloat();
+  initServiciosMobileCarousel();
 });

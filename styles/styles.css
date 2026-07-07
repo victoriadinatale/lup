@@ -844,6 +844,25 @@ section {
   gap: 22px;
 }
 
+.servicios-dots {
+  display: none;
+}
+
+.servicios-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(196, 232, 2, 0.28);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+  padding: 0;
+}
+
+.servicios-dot.is-active {
+  background: var(--lima);
+  transform: scale(1.2);
+}
+
 .servicio-card {
   background: var(--negro);
   border: 1px solid rgba(196, 232, 2, 0.07);
@@ -1383,7 +1402,7 @@ section {
   font-weight: 400;
   text-decoration: none;
   box-shadow: none;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .whatsapp-float:hover {
@@ -1405,6 +1424,17 @@ section {
   .whatsapp-float {
     right: 16px;
     bottom: 16px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(10px);
+  }
+
+  .whatsapp-float.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 }
 
@@ -1700,7 +1730,39 @@ footer {
   .hamburger { display: flex; }
   .sobre-team-track { animation-duration: 54s; }
   .team-member { flex-basis: 230px; }
-  .servicios-grid { grid-template-columns: 1fr; }
+  .servicios-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(82vw, 1fr);
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 14px;
+    padding: 4px 2px 12px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .servicios-grid::-webkit-scrollbar { display: none; }
+  .servicio-card { scroll-snap-align: start; }
+  .servicios-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .lup-kids-video-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+  .lup-kids-video {
+    width: 100%;
+    height: auto;
+    max-height: 68vh;
+    object-fit: contain;
+  }
   .proceso-steps { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .form-group.full { grid-column: span 1; }
@@ -1715,6 +1777,7 @@ footer {
 @media (max-width: 480px) {
   .hero-logo-image { width: min(420px, 88vw); margin-bottom: 32px; }
   .stats-grid { grid-template-columns: 1fr; }
+  .lup-kids-video { max-height: 62vh; }
   
   /* LOADER EXTRA SMALL */
   .loader-logo-img { width: 120px; }
