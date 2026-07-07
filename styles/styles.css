@@ -472,7 +472,7 @@ body::before {
 
 /* ─── SECTION COMMONS ─── */
 section {
-  padding: 130px 0;
+  padding: 96px 0;
 }
 
 .container {
@@ -1688,7 +1688,7 @@ footer {
 @media (max-width: 768px) {
   html { font-size: 16px; }
   .container { padding: 0 24px; }
-  section { padding: 90px 0; }
+  section { padding: 64px 0; }
   .sobre-team-title { margin-bottom: 4px; }
   .main-nav { padding: 18px 24px; }
   .main-nav.scrolled { padding: 14px 24px; }
