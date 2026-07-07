@@ -63,7 +63,6 @@ body {
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
-  /* cursor: none; ELIMINADO — cursor normal del sistema */
 }
 
 ::selection {
@@ -545,7 +544,7 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: start;
 }
 
 .sobre-copy p {
@@ -602,6 +601,9 @@ section {
 
 .sobre-visual {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .sobre-card {
@@ -683,6 +685,20 @@ section {
   font-size: 0.92rem;
   color: var(--gris-texto);
   line-height: 1.7;
+}
+
+.sobre-video-slot {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(196, 232, 2, 0.16);
+  background: #0e0f0e;
+}
+
+.sobre-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #0e0f0e;
 }
 
 .sobre-team {
@@ -886,8 +902,9 @@ section {
 .servicio-card--teaser {
   min-height: 330px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding: 26px 22px;
 }
 
 .servicio-card--teaser .servicio-title {
