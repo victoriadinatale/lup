@@ -1807,10 +1807,25 @@ footer {
     transform: scale(0.96);
     transition: transform 0.35s ease, border-color 0.35s ease;
   }
+  .team-photo {
+    transition: opacity 1.08s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .team-photo--overlay {
+    transform: scale(1.02);
+    filter: saturate(1.04) contrast(1.02);
+  }
+  .team-member--active .team-photo:not(.team-photo--overlay) {
+    transform: scale(0.99);
+    filter: grayscale(1) saturate(0.52) brightness(0.93);
+  }
   .team-member--active {
     transform: scale(1);
     border-color: rgba(196, 232, 2, 0.26);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  }
+  .team-member--active .team-photo:not(.team-photo--overlay),
+  .team-member--active .team-photo--overlay {
+    transition-delay: 1.5s;
   }
   .team-member--clone {
     display: none;
