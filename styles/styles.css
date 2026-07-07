@@ -766,10 +766,20 @@ section {
   display: block;
 }
 
-.team-photo--dani,
-.team-photo--lole,
+.team-photo--dani {
+  object-position: center 17%;
+}
+
+.team-photo--vir {
+  object-position: center 40%;
+}
+
+.team-photo--lole {
+  object-position: center 26%;
+}
+
 .team-photo--agos {
-  object-position: center 48%;
+  object-position: center 5%;
 }
 
 .team-name {
