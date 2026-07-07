@@ -207,24 +207,178 @@ function initTeamPhotoSwap() {
     const hoverSrc = photo.dataset.hoverSrc;
     if (!defaultSrc || !hoverSrc) return;
 
-    const showDefault = () => {
-      if (photo.getAttribute('src') !== defaultSrc) {
-        photo.setAttribute('src', defaultSrc);
-      }
-    };
+    const wrap = photo.parentElement;
+    if (!wrap) return;
 
-    const showHover = () => {
-      if (photo.getAttribute('src') !== hoverSrc) {
-        photo.setAttribute('src', hoverSrc);
-      }
-    };
+    if (!wrap.querySelector('.team-photo--overlay')) {
+      const overlayPhoto = document.createElement('img');
+      overlayPhoto.className = `${photo.className} team-photo--overlay`;
+      overlayPhoto.setAttribute('src', hoverSrc);
+      overlayPhoto.setAttribute('alt', '');
+      overlayPhoto.setAttribute('aria-hidden', 'true');
+      overlayPhoto.setAttribute('loading', 'lazy');
+      overlayPhoto.setAttribute('decoding', 'async');
+      wrap.appendChild(overlayPhoto);
+    }
 
-    showDefault();
-    card.addEventListener('mouseenter', showHover);
-    card.addEventListener('mouseleave', showDefault);
-    card.addEventListener('focusin', showHover);
-    card.addEventListener('focusout', showDefault);
+    const preloaded = new Image();
+    preloaded.src = hoverSrc;
+
+    photo.setAttribute('src', defaultSrc);
+
+    const activate = () => card.classList.add('team-member--active');
+    const deactivate = () => card.classList.remove('team-member--active');
+
+    card.addEventListener('mouseenter', activate);
+    card.addEventListener('mouseleave', deactivate);
+    card.addEventListener('focusin', activate);
+    card.addEventListener('focusout', deactivate);
   });
+}
+
+// ─── MOBILE TEAM CAROUSEL ───────────────────
+function initTeamMobileCarousel() {
+  const slider = document.querySelector('.sobre-team-slider');
+  const track = document.querySelector('.sobre-team-track');
+  if (!slider || !track) return;
+
+  const cards = Array.from(track.querySelectorAll('.team-member:not(.team-member--clone)'));
+  if (cards.length < 2) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let activeIndex = 0;
+  let autoPlayTimer = null;
+  let resumeTimer = null;
+  let sectionIsVisible = true;
+
+  const stopAutoPlay = () => {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  };
+
+  const markActiveCard = (index) => {
+    cards.forEach((card, cardIndex) => {
+      card.classList.toggle('team-member--active', cardIndex === index);
+    });
+  };
+
+  const getScrollLeftForIndex = (index) => {
+    const safeIndex = Math.min(cards.length - 1, Math.max(0, index));
+    const card = cards[safeIndex];
+    const centeredLeft = card.offsetLeft - ((slider.clientWidth - card.offsetWidth) / 2);
+    return Math.max(0, centeredLeft);
+  };
+
+  const scrollToIndex = (index, behavior = 'smooth') => {
+    const safeIndex = Math.min(cards.length - 1, Math.max(0, index));
+    slider.scrollTo({
+      left: getScrollLeftForIndex(safeIndex),
+      behavior
+    });
+    activeIndex = safeIndex;
+    markActiveCard(activeIndex);
+  };
+
+  const getClosestIndex = () => {
+    const centerX = slider.scrollLeft + (slider.clientWidth / 2);
+    let bestIndex = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    cards.forEach((card, index) => {
+      const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+      const distance = Math.abs(cardCenter - centerX);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = index;
+      }
+    });
+
+    return bestIndex;
+  };
+
+  const startAutoPlay = () => {
+    stopAutoPlay();
+    if (!mobileQuery.matches || reducedMotionQuery.matches || !sectionIsVisible) return;
+
+    autoPlayTimer = setInterval(() => {
+      if (document.hidden) return;
+      const nextIndex = (activeIndex + 1) % cards.length;
+      scrollToIndex(nextIndex);
+    }, 3400);
+  };
+
+  const pauseAndResumeAutoPlay = () => {
+    stopAutoPlay();
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoPlay, 3600);
+  };
+
+  const handleScroll = () => {
+    if (!mobileQuery.matches) return;
+    activeIndex = getClosestIndex();
+    markActiveCard(activeIndex);
+  };
+
+  const syncMode = () => {
+    sectionIsVisible = slider.getBoundingClientRect().bottom > 0 && slider.getBoundingClientRect().top < window.innerHeight;
+
+    if (!mobileQuery.matches) {
+      stopAutoPlay();
+      cards.forEach(card => card.classList.remove('team-member--active'));
+      return;
+    }
+
+    activeIndex = getClosestIndex();
+    markActiveCard(activeIndex);
+    startAutoPlay();
+  };
+
+  slider.addEventListener('scroll', handleScroll, { passive: true });
+  slider.addEventListener('touchstart', pauseAndResumeAutoPlay, { passive: true });
+  slider.addEventListener('touchmove', pauseAndResumeAutoPlay, { passive: true });
+  slider.addEventListener('touchend', pauseAndResumeAutoPlay, { passive: true });
+  slider.addEventListener('pointerdown', pauseAndResumeAutoPlay);
+  slider.addEventListener('pointerup', pauseAndResumeAutoPlay);
+  slider.addEventListener('mouseenter', pauseAndResumeAutoPlay);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoPlay();
+      return;
+    }
+    startAutoPlay();
+  });
+  window.addEventListener('resize', syncMode);
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', syncMode);
+  } else if (typeof mobileQuery.addListener === 'function') {
+    mobileQuery.addListener(syncMode);
+  }
+
+  if (typeof reducedMotionQuery.addEventListener === 'function') {
+    reducedMotionQuery.addEventListener('change', syncMode);
+  } else if (typeof reducedMotionQuery.addListener === 'function') {
+    reducedMotionQuery.addListener(syncMode);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      sectionIsVisible = Boolean(entry && entry.isIntersecting);
+      if (!sectionIsVisible) {
+        stopAutoPlay();
+        return;
+      }
+      startAutoPlay();
+    }, { threshold: 0.35 });
+
+    observer.observe(slider);
+  }
+
+  syncMode();
 }
 
 // ─── CLIENTES TICKER DUPLICATE ───────────────
@@ -448,6 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoopDivider();
   initActiveNav();
   initHeroLoops();
+  initTeamMobileCarousel();
   initMobileWhatsappFloat();
   initServiciosMobileCarousel();
 });

@@ -757,13 +757,54 @@ section {
   border: 2px solid rgba(196, 232, 2, 0.35);
   overflow: hidden;
   background: rgba(196, 232, 2, 0.06);
+  position: relative;
+  box-shadow: inset 0 0 0 rgba(196, 232, 2, 0);
+  transition: box-shadow 0.45s ease, border-color 0.45s ease;
 }
 
 .team-photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1);
+  transition: opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.team-photo:not(.team-photo--overlay) {
+  opacity: 1;
+  filter: grayscale(1) saturate(0.65) contrast(1.02);
+}
+
+.team-photo--overlay {
+  opacity: 0;
+  transform: scale(1.05);
+  filter: saturate(1.08) contrast(1.04);
+  pointer-events: none;
+}
+
+.team-member--active .team-photo:not(.team-photo--overlay),
+.team-member:hover .team-photo:not(.team-photo--overlay),
+.team-member:focus-within .team-photo:not(.team-photo--overlay) {
+  opacity: 0;
+  transform: scale(0.97);
+  filter: grayscale(1) saturate(0.45) brightness(0.88);
+}
+
+.team-member--active .team-photo--overlay,
+.team-member:hover .team-photo--overlay,
+.team-member:focus-within .team-photo--overlay {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.team-member--active .team-photo-wrap,
+.team-member:hover .team-photo-wrap,
+.team-member:focus-within .team-photo-wrap {
+  border-color: rgba(196, 232, 2, 0.62);
+  box-shadow: 0 0 0 2px rgba(196, 232, 2, 0.18), 0 14px 34px rgba(196, 232, 2, 0.16);
 }
 
 .team-photo--dani {
@@ -1742,8 +1783,38 @@ footer {
   .footer-logo-image { width: 46px; height: 46px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .sobre-team-track { animation-duration: 54s; }
-  .team-member { flex-basis: 230px; }
+  .sobre-team-slider {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    touch-action: pan-x;
+    cursor: grab;
+    padding: 22px 2px 16px;
+  }
+  .sobre-team-slider::-webkit-scrollbar { display: none; }
+  .sobre-team-slider:active { cursor: grabbing; }
+  .sobre-team-track {
+    animation: none;
+    width: auto;
+    gap: 14px;
+    padding: 0 6vw;
+  }
+  .team-member {
+    flex: 0 0 clamp(220px, 74vw, 280px);
+    scroll-snap-align: center;
+    transform: scale(0.96);
+    transition: transform 0.35s ease, border-color 0.35s ease;
+  }
+  .team-member--active {
+    transform: scale(1);
+    border-color: rgba(196, 232, 2, 0.26);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  }
+  .team-member--clone {
+    display: none;
+  }
   .servicios-grid {
     grid-template-columns: none;
     grid-auto-flow: column;
@@ -1808,4 +1879,14 @@ footer {
   .cliente-name { font-size: 0.6rem; max-width: 150px; }
   .clientes-ticker-wrapper::before,
   .clientes-ticker-wrapper::after { width: 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-photo,
+  .team-photo--overlay,
+  .team-member,
+  .sobre-team-track {
+    transition: none !important;
+    animation: none !important;
+  }
 }
